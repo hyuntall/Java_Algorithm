@@ -10,7 +10,6 @@ public class problem16439 {
 		for (int i = 0; i < 3; i++) maxFavorit = Math.max(maxFavorit, favorit[index][combination[i]]);
 		return maxFavorit;
 	}
-	
 	static void makeCombination(int start, int depth) {
 		if (depth == 3) {
 			int sum = 0;
