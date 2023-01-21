@@ -5,11 +5,7 @@ import java.util.*;
 
 public class problem1485 {
 	static double getDist(int x1, int x2, int y1, int y2) {
-		//System.out.println((y2)+""+y1 + "" + (x2)+""+x1);
-		//System.out.println(((y2 - y1) + (x2 - x1)));
-		//System.out.println(Math.sqrt( Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2)));
 		return Math.sqrt( Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-		
 	}
 	
 	public static void main(String[] args) {
@@ -22,11 +18,9 @@ public class problem1485 {
 			for (int i = 0; i < 4; i++)
 				for (int j = 0; j < 2; j++)
 					pos[i][j] = sc.nextInt();
-			for (int i = 0; i < 3; i++) {
-				for (int j = i + 1; j < 4; j++) {
+			for (int i = 0; i < 3; i++) 
+				for (int j = i + 1; j < 4; j++) 
 					dists[cnt++] = getDist(pos[i][0], pos[j][0], pos[i][1], pos[j][1]);
-				}
-			}
 			Arrays.sort(dists);
 			if (dists[0] == dists[1] && dists[0] == dists[2] && dists[0] == dists[3]
 					&& dists[1] == dists[2] && dists[1] == dists[3] && dists[2] == dists[3]
