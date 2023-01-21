@@ -11,18 +11,12 @@ public class problem18870 {
 		int sortedArr[] = new int[N];
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		HashMap<Integer, Integer> rankingMap = new HashMap<Integer,  Integer>();
-		for (int i = 0; i < N; i++)
-			arr[i] = sortedArr[i] = Integer.parseInt(st.nextToken());
+		for (int i = 0; i < N; i++) arr[i] = sortedArr[i] = Integer.parseInt(st.nextToken());
 		Arrays.sort(sortedArr);
 		int rank = 0;
-		for (int v : sortedArr) {
-			if(!rankingMap.containsKey(v))
-				rankingMap.put(v, rank++);
-		}
+		for (int v : sortedArr) if(!rankingMap.containsKey(v)) rankingMap.put(v, rank++);
 		StringBuffer sb = new StringBuffer();
-		for (int key : arr) {
-			sb.append(rankingMap.get(key)).append(" ");
-		}
+		for (int key : arr) sb.append(rankingMap.get(key)).append(" ");
 		System.out.println(sb);
 	}
 }
