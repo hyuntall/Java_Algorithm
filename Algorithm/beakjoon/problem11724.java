@@ -9,7 +9,6 @@ public class problem11724 {
 	static int [][] graph = new int [1001][1001];
 	
 	public static void dfs(int idx) {
-
 		visited[idx] = true;
 		for (int i = 1; i <= N; i++) 
 			if (graph[idx][i] == 1 && visited[i] == false) dfs(i);
