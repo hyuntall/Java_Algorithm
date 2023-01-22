@@ -13,12 +13,9 @@ public class problem7662 {
 		while (true) {
 			num = queue.poll();
 			int cnt = map.getOrDefault(num, 0);
-			if (cnt == 0)
-				continue;
-			if (cnt > 1)
-				map.put(num, cnt - 1);
-			else
-				map.remove(num);
+			if (cnt == 0) continue;
+			if (cnt > 1) map.put(num, cnt - 1);
+			else map.remove(num);
 			break;
 		}
 		return num;
@@ -30,7 +27,6 @@ public class problem7662 {
 		for (int tc = 0; tc < T; tc++) {
 			PriorityQueue<Integer> pq = new PriorityQueue<>();
 			PriorityQueue<Integer> rpq = new PriorityQueue<>(Collections.reverseOrder());
-			// 선언
 			HashMap<Integer, Integer> map = new HashMap<>();
 			k = Integer.parseInt(br.readLine());
 			for (int i = 0; i < k; i++) {
@@ -42,26 +38,19 @@ public class problem7662 {
 					pq.add(n);
 					rpq.add(n);
 				} else {
-					if (map.size() == 0)
-						continue;
-					if (n == 1)
-						removeMap(rpq, map);
-					else
-						removeMap(pq, map);
+					if (map.size() == 0) continue;
+					if (n == 1) removeMap(rpq, map);
+					else removeMap(pq, map);
 				}
 			}
-			if (map.size() == 0)
-				System.out.println("EMPTY");
+			if (map.size() == 0) System.out.println("EMPTY");
 			else {
 				int maxNum = removeMap(rpq, map);
 				int minNum;
-				if (map.size() == 0)
-					minNum = n;
-				else
-					minNum = removeMap(pq, map);
+				if (map.size() == 0) minNum = maxNum;
+				else minNum = removeMap(pq, map);
 				System.out.println(maxNum + " " + minNum);
 			}
-				
 		}
 	}
 }
