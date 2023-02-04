@@ -84,15 +84,9 @@ public class problem14890경사로 {
 				arr[i][j] = Integer.parseInt(st.nextToken());
 		}
 		for (int i = 0; i < N; i++) {
-			//System.out.println(i + "번째 줄");
-			//System.out.println("가로");
 			checkRow(i);
-			//System.out.println();
-			//System.out.println("세로");
 			checkCol(i);
-			//System.out.println();
 		}
-		//System.out.println();
 		System.out.println(result);
 	}
 }

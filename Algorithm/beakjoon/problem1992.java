@@ -6,7 +6,6 @@ import java.util.*;
 public class problem1992 {
 	static String line;
 	static int [][] arr;
-	
 	static void quad(int x, int y, int len) {
 		int first = arr[x][y];
 		for (int i = x; i < x + len; i++) {
@@ -23,7 +22,6 @@ public class problem1992 {
 			}
 		}
 		System.out.print(first);
-		
 	}
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -36,5 +34,4 @@ public class problem1992 {
 		}
 		quad(0, 0, N);
 	}
-
 }
