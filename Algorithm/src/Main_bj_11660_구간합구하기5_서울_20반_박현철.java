@@ -10,12 +10,10 @@ public class Main_bj_11660_구간합구하기5_서울_20반_박현철 {
 		int M = Integer.parseInt(st.nextToken());
 		int [][] dp = new int [N + 1][N + 1];
 		int [][] arr = new int [N][N];
-		for (int i = 0; i < N; i++) {
+		for (int i = 1; i <= N; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
-			for (int j = 0; j < N; j++) {
-				arr[i][j] = Integer.parseInt(st.nextToken());		
-				dp[i + 1][j + 1] = (dp[i][j + 1] + dp[i + 1][j] - dp[i][j]) + arr[i][j];
-			}
+			for (int j = 1; j <= N; j++)
+				dp[i][j] = (dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1]) + Integer.parseInt(st.nextToken());	
 		}
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
