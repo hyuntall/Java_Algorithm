@@ -13,8 +13,7 @@ public class Main {
 		while (!q.isEmpty()) {
 			int n = q.poll();
 			cnt--;
-			for (int i = 0; i < g[n].size(); i++) {
-				int nCity = g[n].get(i);
+			for (int nCity: g[n]) {
 				if (v[nCity] == isA && !visited[nCity]) {
 					visited[nCity] = true;
 					q.offer(nCity);
@@ -28,6 +27,7 @@ public class Main {
 		if (ans == 0) return;
 		if (cnt == N+1) {
 			if (aCnt == N || aCnt == 0) return;
+			
 			for (int i = 1; i <= N; i++) {
 				visited = new boolean[N+1];
 				if(v[i] && !isAble(i, aCnt, v[i])) return;
@@ -56,13 +56,10 @@ public class Main {
 			arr[i] = Integer.parseInt(st.nextToken());
 			sum+=arr[i];
 		}
-		for (int from = 1; from <= N; from++) {
+		for (int i = 1; i <= N; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
 			int n = Integer.parseInt(st.nextToken());
-			for (int j = 0; j < n; j++) {
-				int to = Integer.parseInt(st.nextToken());
-				g[from].add(to);
-			}
+			for (int j = 0; j < n; j++) g[i].add(Integer.parseInt(st.nextToken()));
 		}
 		subs(1, 0);
 		System.out.println((ans!=Integer.MAX_VALUE)?ans:-1);
