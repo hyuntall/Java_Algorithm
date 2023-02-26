@@ -2,46 +2,46 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-	static int N, ans = Integer.MAX_VALUE, SUM;
-	static List[] g;
+	static int N, ans = Integer.MAX_VALUE, sum;
+	static List<Integer>[] g;
 	static int [] arr;
 	static boolean []v, visited;
 	static ArrayDeque<Integer> q = new ArrayDeque<>();
-	static boolean isAble(int c, int cnt, boolean isA) {
-		q.offer(c);
-		visited[c] = true;
+	static boolean isAble(int city, int cnt, boolean isA) {
+		q.offer(city);
+		visited[city] = true;
 		while (!q.isEmpty()) {
 			int n = q.poll();
 			cnt--;
 			for (int i = 0; i < g[n].size(); i++) {
-				int a = (int) g[n].get(i);
-				if (v[a] == isA && !visited[a]) {
-					visited[a] = true;
-					q.offer(a);
+				int nCity = g[n].get(i);
+				if (v[nCity] == isA && !visited[nCity]) {
+					visited[nCity] = true;
+					q.offer(nCity);
 				}
 			}
 		}
-		if (cnt > 0) return false;
-		return true;
+		return (cnt == 0);
 	}
 	
-	static void subs(int cnt, int a) {
+	static void subs(int cnt, int aCnt) {
+		if (ans == 0) return;
 		if (cnt == N+1) {
-			if (a == N || a == 0) return;
+			if (aCnt == N || aCnt == 0) return;
 			for (int i = 1; i <= N; i++) {
 				visited = new boolean[N+1];
-				if(v[i] && (!isAble(i, a, v[i]))) return;
-				if(!v[i]&&!isAble(i, N-a, v[i]))return;
+				if(v[i] && !isAble(i, aCnt, v[i])) return;
+				if(!v[i]&&!isAble(i, N-aCnt, v[i])) return;
 			}
-			int sum = 0;
-			for (int i = 1; i <= N; i++) if(v[i])sum+=arr[i];
-			ans = Math.min(ans, Math.abs(SUM-sum-sum));
+			int aSum = 0;
+			for (int i = 1; i <= N; i++) if(v[i])aSum+=arr[i];
+			ans = Math.min(ans, Math.abs(sum-aSum-aSum));
 			return;
 		}
 		v[cnt] = true;
-		subs(cnt + 1, a+1);
+		subs(cnt + 1, aCnt+1);
 		v[cnt] = false;
-		subs(cnt + 1, a);
+		subs(cnt + 1, aCnt);
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -54,7 +54,7 @@ public class Main {
 		for (int i = 1; i <= N; i++) g[i] = new ArrayList<Integer>();
 		for (int i = 1; i <= N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
-			SUM+=arr[i];
+			sum+=arr[i];
 		}
 		for (int from = 1; from <= N; from++) {
 			st = new StringTokenizer(br.readLine(), " ");
