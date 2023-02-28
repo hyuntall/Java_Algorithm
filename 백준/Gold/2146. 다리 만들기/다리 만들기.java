@@ -8,6 +8,7 @@ public class Main {
 	static int [] dx = {0, 0, -1, 1};
 	static boolean [][] v;
 	static ArrayDeque<int[]> q = new ArrayDeque<>();
+	
 	static boolean isEdge(int y, int x) {
 		for (int i = 0; i < 4; i++) {
 			int ny = y + dy[i];
@@ -45,19 +46,14 @@ public class Main {
 			int [] cur = q.poll();
 			y = cur[0];
 			x = cur[1];
-			int dist = cur[2];
 			for (int i=0; i<4; i++) {
 				int ny = y+dy[i];
 				int nx = x+dx[i];
 				if (0<=ny&&ny<N&&0<=nx&&nx<N&&!v[ny][nx]) {
 					if (arr[ny][nx]==0) {
 						v[ny][nx] = true;
-						q.offer(new int[] {ny, nx, dist+1});
-					} else {
-						if (dist>0) {
-							ans = Math.min(ans, dist);
-						}
-					}
+						q.offer(new int[] {ny, nx, cur[2]+1});
+					} else ans = Math.min(ans, cur[2]);
 				}
 			}
 		}
@@ -76,7 +72,6 @@ public class Main {
 				if (arr[i][j]==1&&isEdge(i, j)) {
 					v = new boolean[N][N];
 					mark(i, j);
-					//for(boolean a[]:v)System.out.println(Arrays.toString(a));
 					bfs(i, j);
 				}
 			}
