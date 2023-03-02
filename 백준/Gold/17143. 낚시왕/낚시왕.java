@@ -2,15 +2,6 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-	//N+1 x N+1
-	// 상어(크기, 속도)
-	
-	// 낚시왕 오른쪽으로 이동
-	
-	// 가장 위에있는 상어 잡기
-	
-	// 상어 이동?
-	
 	static class Shark{
 		int r;
 		int c;
@@ -25,11 +16,6 @@ public class Main {
 			this.d = d;
 			this.z = z;
 		}
-		@Override
-		public String toString() {
-			return "shark [r=" + r + ", c=" + c + ", s=" + s + ", d=" + d + ", z=" + z + "]";
-		}
-		
 	}
 	static int R, C, M, ans;
 	static PriorityQueue<Shark> [][] arr;
@@ -75,16 +61,16 @@ public class Main {
 			else break;
 		}
 		while(!temp.isEmpty()) {
-			Shark tmp = temp.poll();
-			arr[ny][nx].offer(tmp);
+			//Shark tmp = temp.poll();
+			arr[ny][nx].offer(temp.poll());
 		}
 	}
 	static void eat() {
 		for (int i = 1; i <= R; i++) {
 			for (int j = 1; j <= C; j++) {
 				while (arr[i][j].size()>1) {
-					Shark s = arr[i][j].poll();
-					sharks.remove(s);
+					//Shark s = arr[i][j].poll();
+					sharks.remove(arr[i][j].poll());
 				}
 			}
 		}
@@ -112,13 +98,9 @@ public class Main {
 			sharks.add(shark);
 			arr[r][c].offer(shark);
 		}
-		//for (Shark shk : sharks) System.out.print(shk + "\t");;
-		//System.out.println();
 		for (int i = 1; i <= C; i++) {
 			fishing(i);
 			for (Shark shk : sharks) move(shk);
-			//for (Shark shk : sharks) System.out.print(shk + "\t");;
-			//System.out.println();
 			eat();
 		}
 		System.out.println(ans);
