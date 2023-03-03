@@ -3,13 +3,8 @@ import java.util.*;
 
 public class Main {
 	static class Shark{
-		int r;
-		int c;
-		int s;
-		int d;
-		int z;
+		int r, c, s, d, z;
 		public Shark(int r, int c, int s, int d, int z) {
-			// TODO Auto-generated constructor stub
 			this.r = r;
 			this.c = c;
 			this.s = s;
@@ -60,20 +55,14 @@ public class Main {
 			if (!tmp.equals(s)) temp.offer(tmp);
 			else break;
 		}
-		while(!temp.isEmpty()) {
-			//Shark tmp = temp.poll();
-			arr[ny][nx].offer(temp.poll());
-		}
+		while(!temp.isEmpty()) arr[ny][nx].offer(temp.poll());
+		
 	}
 	static void eat() {
-		for (int i = 1; i <= R; i++) {
-			for (int j = 1; j <= C; j++) {
-				while (arr[i][j].size()>1) {
-					//Shark s = arr[i][j].poll();
+		for (int i = 1; i <= R; i++) 
+			for (int j = 1; j <= C; j++) 
+				while (arr[i][j].size()>1) 
 					sharks.remove(arr[i][j].poll());
-				}
-			}
-		}
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -92,9 +81,11 @@ public class Main {
 			r = Integer.parseInt(st.nextToken());
 			c = Integer.parseInt(st.nextToken());
 			s = Integer.parseInt(st.nextToken());
-			d = Integer.parseInt(st.nextToken());
+			d = Integer.parseInt(st.nextToken())-1;
 			z = Integer.parseInt(st.nextToken());
-			Shark shark = new Shark(r, c, s, d-1, z);
+			if (d<2) s %=(2*(R-1));
+			else s %=(2*(C-1));
+			Shark shark = new Shark(r, c, s, d, z);
 			sharks.add(shark);
 			arr[r][c].offer(shark);
 		}
