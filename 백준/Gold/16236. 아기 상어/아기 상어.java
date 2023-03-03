@@ -1,12 +1,5 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 	static int N, size = 2, exp, result;
@@ -15,7 +8,6 @@ public class Main {
 	static int [] dy = {0, -1, 0, 1};
 	static int [] dx = {-1, 0, 1, 0};
 	static int cur [];
-	static boolean flag;
 	static PriorityQueue<int []> q = new PriorityQueue<>((o1, o2) -> {
 		if (o1[2] != o2[2])
 			return Integer.compare(o1[2],  o2[2]);
@@ -25,7 +17,8 @@ public class Main {
 			return Integer.compare(o1[1],  o2[1]);
 	});
 
-	static void bfs() {
+	static boolean bfs() {
+		q.clear();
 		int x, y, nx, ny;
 		boolean [][] visited = new boolean[N][N];
 		q.add(new int [] {cur[0], cur[1], 0});
@@ -44,8 +37,7 @@ public class Main {
 					size++;
 					exp = 0;
 				}
-				flag = true;
-				break;
+				return true;
 			}
 			
 			for (int i = 0; i <4; i++) {
@@ -59,6 +51,7 @@ public class Main {
 				}
 			}
 		}
+		return false;
 	}
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -74,13 +67,7 @@ public class Main {
 				}
 			}
 		}
-		while (true) {
-			q.clear();
-			flag = false;
-			bfs();
-			if (!flag)
-				break;
-		}
+		while (bfs());
 		System.out.println(result);
 	}
 }
