@@ -5,14 +5,12 @@ public class Main {
 	static int N, M;
 	static int [][] dist;
 	static List<int []>[] g;
-	static boolean [] v;
 	static void dijkstra(int start, int end) {
 		PriorityQueue<int []> pq = new PriorityQueue<>((o1, o2)->Integer.compare(o1[1], o2[1]));
-		pq.offer(new int[] {start, 0, 1<<start});
+		pq.offer(new int[] {start, 0});
 		dist[start][0] = 0;
 		while (!pq.isEmpty()) {
 			int cur[] = pq.poll();
-			v[cur[0]] = true;
 			if (cur[0] == end) return;
 			for (int next[]: g[cur[0]]) {
 				if (dist[next[0]][0] > next[1] + cur[1]) {
@@ -29,7 +27,6 @@ public class Main {
 		N = Integer.parseInt(br.readLine());
 		g = new List[N+1];
 		dist = new int[N+1][2];
-		v = new boolean[N+1];
 		for (int i = 1; i <= N; i++) {
 			dist[i][0] = Integer.MAX_VALUE;
 			g[i] = new ArrayList<>();
