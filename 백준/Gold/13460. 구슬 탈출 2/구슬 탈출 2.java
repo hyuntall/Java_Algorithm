@@ -116,7 +116,7 @@ public class Main {
 	}
 	
 	static public void dfs(char [][] Board, int cnt) {
-		if (cnt > 10 || cnt > ans) return;
+		if (cnt > 10) return;
 		cnt++;
 		int able = 0;
 		char [][] cpBoard = new char[N][M];
